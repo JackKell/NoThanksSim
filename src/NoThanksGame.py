@@ -82,11 +82,8 @@ class NoThanksGame(object):
 
     def PromptCurrentPlayer(self):
         currentPlayer: BaseNoThanksPlayer = self.GetCurrentPlayer()
-        if currentPlayer.CanPass():
-            if currentPlayer.WillPass(boardState=self):
-                self.Pass(currentPlayer)
-            else:
-                self.TakeCard(currentPlayer)
+        if currentPlayer.CanPass() and currentPlayer.WillPass(boardState=self):
+            self.Pass(currentPlayer)
         else:
             self.TakeCard(currentPlayer)
 
