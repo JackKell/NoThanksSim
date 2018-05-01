@@ -64,7 +64,7 @@ class NoThanksGame(object):
         for playerIndex, player in enumerate(self.players):  # type: int, BaseNoThanksPlayer
             print("\tPlayer", playerIndex + 1)
             print("\t\tTokens:", player.tokens)
-            print("\t\tCards:", player.cards)
+            print("\t\tCards:", sorted(player.cards))
             print("\t\tScore:", player.GetScore())
 
     def PrintScoreBoard(self) -> None:
