@@ -11,7 +11,7 @@ class NoThanksGame(object):
         self.card = None
         self.tokens = 0
         self.currentPlayerIndex = 0
-        self.startingTokens = 10
+        self.startingTokens = 11
         self.lowestCard = 3
         self.highestCard = 35
         self.totalDiscards = 4
@@ -83,7 +83,7 @@ class NoThanksGame(object):
     def PromptCurrentPlayer(self):
         currentPlayer: BaseNoThanksPlayer = self.GetCurrentPlayer()
         if currentPlayer.CanPass():
-            if currentPlayer.WillPass():
+            if currentPlayer.WillPass(boardState=self):
                 self.Pass(currentPlayer)
             else:
                 self.TakeCard(currentPlayer)
