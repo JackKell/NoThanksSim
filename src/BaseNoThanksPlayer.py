@@ -1,28 +1,30 @@
-import random
 from abc import ABC, abstractclassmethod
+from typing import List
 
 
 class BaseNoThanksPlayer(ABC):
     def __init__(self):
-        self.tokens = 0
-        self.cards = []
+        self.tokens: int = 0
+        self.cards: List[int] = []
 
     @abstractclassmethod
-    def WillPass(self, boardState=None):
-        return True
+    def WillPass(self, boardState=None) -> bool:
+        pass
 
-    def CanPass(self):
+    def CanPass(self) -> bool:
         return self.tokens > 0
 
-    def GetScore(self):
-        score = self.tokens * -1
-        if len(self.cards) != 0:
-            self.cards.sort(reverse=True)
-            score = self.cards[-1]
-            for i in range(len(self.cards) - 1):
-                card = self.cards[i]
-                nextCard = self.cards[i + 1]
-                if card != nextCard + 1:
+    def GetScore(self) -> int:
+        score: int = 0
+        if self.cards:
+            lastCardIndex: int = len(self.cards) - 1
+            sortedCards: List[int] = sorted(self.cards, reverse=True)
+            for cardIndex, card in enumerate(sortedCards):  # type: int, int
+                if cardIndex == lastCardIndex:
                     score += card
-            score -= self.tokens
+                else:
+                    nextCard: int = sortedCards[cardIndex + 1]
+                    if (card - 1) != nextCard:
+                        score += card
+        score -= self.tokens
         return score
