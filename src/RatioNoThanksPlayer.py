@@ -5,7 +5,7 @@ from src.NoThanksGame import NoThanksGame
 
 
 class RatioNoThanksPlayer(BaseNoThanksPlayer):
-    def WillPass(self, boardState: NoThanksGame = None):
+    def WillPass(self, boardState: NoThanksGame = None) -> bool:
         currentTokenToPointRatio = boardState.tokens / boardState.card
         if currentTokenToPointRatio >= .33:
             return bool(random.getrandbits(1))

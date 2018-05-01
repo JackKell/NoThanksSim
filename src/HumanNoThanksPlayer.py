@@ -2,9 +2,9 @@ from src.BaseNoThanksPlayer import BaseNoThanksPlayer
 
 
 class HumanNoThanksPlayer(BaseNoThanksPlayer):
-    def WillPass(self, boardState=None):
+    def WillPass(self, boardState=None) -> bool:
         while True:
-            passInput = input("Pass (y / n): ").lower()
+            passInput: str = input("Pass (y / n): ").lower()
             if "y" in passInput:
                 return True
             elif "n" in passInput:

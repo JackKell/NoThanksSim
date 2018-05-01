@@ -6,7 +6,7 @@ from src.RatioNoThanksPlayer import RatioNoThanksPlayer
 
 def main():
     # random.seed(123)
-    noThanksGame = NoThanksGame()
+    noThanksGame: NoThanksGame = NoThanksGame()
     noThanksGame.AddPlayer(HumanNoThanksPlayer())
     noThanksGame.AddPlayer(RatioNoThanksPlayer())
     noThanksGame.AddPlayer(RatioNoThanksPlayer())
