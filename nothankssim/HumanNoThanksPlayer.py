@@ -1,8 +1,8 @@
-from src.BaseNoThanksPlayer import BaseNoThanksPlayer
+from nothankssim.BaseNoThanksPlayer import BaseNoThanksPlayer
 
 
 class HumanNoThanksPlayer(BaseNoThanksPlayer):
-    def WillPass(self, boardState=None):
+    def willPass(self, boardState=None):
         passInput = None
         while passInput is None:
             passInput = input("Pass (Y/N): ")
