@@ -1,33 +1,36 @@
 from abc import ABC, abstractclassmethod
+from typing import List
 
 
 class BaseNoThanksPlayer(ABC):
     def __init__(self, name=None):
-        self.name = name
-        self.tokens = 0
-        self.cards = []
+        self.name: str = name
+        self.tokens: int = 0
+        self.cards: List[int] = []
 
     def __str__(self):
         return str(self.name)
 
     @abstractclassmethod
-    def willPass(self, boardState=None):
+    def willPass(self, boardState=None) -> bool:
         return True
 
-    def hasTokens(self):
+    def hasTokens(self) -> bool:
         return self.tokens > 0
 
-    def getCurrentScore(self):
-        score = self.tokens * -1
-        if len(self.cards) != 0:
-            self.cards.sort(reverse=True)
-            score = self.cards[-1]
-            for i in range(len(self.cards) - 1):
-                card = self.cards[i]
-                nextCard = self.cards[i + 1]
-                if card != nextCard + 1:
+    def getCurrentScore(self) -> int:
+        score: int = 0
+        if self.cards:
+            lastCardIndex: int = len(self.cards) - 1
+            sortedCards: List[int] = sorted(self.cards, reverse=True)
+            for cardIndex, card in enumerate(sortedCards):  # type: int, int
+                if cardIndex == lastCardIndex:
                     score += card
-            score -= self.tokens
+                else:
+                    nextCard: int = sortedCards[cardIndex + 1]
+                    if (card - 1) != nextCard:
+                        score += card
+        score -= self.tokens
         return score
 
     def passCard(self):

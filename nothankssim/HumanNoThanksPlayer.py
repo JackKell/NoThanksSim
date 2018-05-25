@@ -11,4 +11,4 @@ class HumanNoThanksPlayer(BaseNoThanksPlayer):
             elif "n" in passInput.lower():
                 return False
             else:
-                print("In correct input please give y, yes, no, or n")
+                print("Incorrect input please give y, yes, no, or n")
